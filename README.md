@@ -158,13 +158,9 @@ A single, optimized scan chain was inserted to minimize routing overhead while m
 | **Test Mode** | FULLSCAN |
 | **Clock Domain** | `clk_test` (20 ns period) |
 
-### 🧪 Fault Coverage Summary (Modus)
-
-| Category | Total Faults | Tested | Coverage |
-|:---|:---|:---|:---|
-| **Static Stuck-at** | 1,786 | 1,784 | **99.89%** ✅ |
-| **Dynamic Faults** | 1,554 | 1,326 | 85.32% |
-| **Total ATPG Cycles** | 2,129 | — | — |
+🧪 Fault Coverage Summary (Modus)
+CategoryTotal FaultsTestedCoverageStatic Stuck-at1,786 1,784 99.89%
+✅Dynamic Faults1,554 330 21.24% Total ATPG Cycles2,129 77 Test / 2,052 Scan 100% Generated 
 
 ### 🔄 VLSI Flow & Tool Execution
 
