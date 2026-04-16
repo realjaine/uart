@@ -1,4 +1,4 @@
-# RTL-to-ATPG Implementation of a Universal Asynchronous Receiver-Transmitter (UART) Core 🚀
+#A complete industrial ASIC DFT flow: From RTL synthesis to Scan Chain Insertion to 99.89% Test Coverage ATPG 🚀
 
 [![Language](https://img.shields.io/badge/Language-Verilog-yellow.svg)](https://en.wikipedia.org/wiki/Verilog)
 [![Tools](https://img.shields.io/badge/Tools-Cadence%20Genus%20%7C%20Modus-brightgreen.svg)](https://www.cadence.com)
