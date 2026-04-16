@@ -1,0 +1,64 @@
+Reporting 1 scan chain (muxed_scan)
+ 
+Chain 1: chain1 
+  scan_in:      scan_in 
+  scan_out:     scan_out   
+  shift_enable: scan_en (active high) 
+  clock_domain: clk_test (edge: rise)
+  length: 54
+    bit 1 	u_rx_bit_idx_reg[0]  <clk (rise)>  
+    bit 2 	u_rx_bit_idx_reg[1]  <clk (rise)>  
+    bit 3 	u_rx_bit_idx_reg[2]  <clk (rise)>  
+    bit 4 	u_rx_rx_data_reg[0]  <clk (rise)>  
+    bit 5 	u_rx_rx_data_reg[1]  <clk (rise)>  
+    bit 6 	u_rx_rx_data_reg[2]  <clk (rise)>  
+    bit 7 	u_rx_rx_data_reg[3]  <clk (rise)>  
+    bit 8 	u_rx_rx_data_reg[4]  <clk (rise)>  
+    bit 9 	u_rx_rx_data_reg[5]  <clk (rise)>  
+    bit 10 	u_rx_rx_data_reg[6]  <clk (rise)>  
+    bit 11 	u_rx_rx_data_reg[7]  <clk (rise)>  
+    bit 12 	u_rx_rx_sync0_reg  <clk (rise)>  
+    bit 13 	u_rx_rx_sync1_reg  <clk (rise)>  
+    bit 14 	u_rx_rx_valid_reg  <clk (rise)>  
+    bit 15 	u_rx_sample_cnt_reg[0]  <clk (rise)>  
+    bit 16 	u_rx_sample_cnt_reg[1]  <clk (rise)>  
+    bit 17 	u_rx_sample_cnt_reg[2]  <clk (rise)>  
+    bit 18 	u_rx_sample_cnt_reg[3]  <clk (rise)>  
+    bit 19 	u_rx_shift_reg_reg[0]  <clk (rise)>  
+    bit 20 	u_rx_shift_reg_reg[1]  <clk (rise)>  
+    bit 21 	u_rx_shift_reg_reg[2]  <clk (rise)>  
+    bit 22 	u_rx_shift_reg_reg[3]  <clk (rise)>  
+    bit 23 	u_rx_shift_reg_reg[4]  <clk (rise)>  
+    bit 24 	u_rx_shift_reg_reg[5]  <clk (rise)>  
+    bit 25 	u_rx_shift_reg_reg[6]  <clk (rise)>  
+    bit 26 	u_rx_shift_reg_reg[7]  <clk (rise)>  
+    bit 27 	u_rx_state_reg[0]  <clk (rise)>  
+    bit 28 	u_rx_state_reg[1]  <clk (rise)>  
+    bit 29 	u_tx_baud_cnt_reg[0]  <clk (rise)>  
+    bit 30 	u_tx_baud_cnt_reg[1]  <clk (rise)>  
+    bit 31 	u_tx_baud_cnt_reg[2]  <clk (rise)>  
+    bit 32 	u_tx_baud_cnt_reg[3]  <clk (rise)>  
+    bit 33 	u_tx_baud_cnt_reg[4]  <clk (rise)>  
+    bit 34 	u_tx_baud_cnt_reg[5]  <clk (rise)>  
+    bit 35 	u_tx_baud_tick_reg  <clk (rise)>  
+    bit 36 	u_tx_bit_idx_reg[0]  <clk (rise)>  
+    bit 37 	u_tx_bit_idx_reg[1]  <clk (rise)>  
+    bit 38 	u_tx_bit_idx_reg[2]  <clk (rise)>  
+    bit 39 	u_tx_sample_cnt_reg[0]  <clk (rise)>  
+    bit 40 	u_tx_sample_cnt_reg[1]  <clk (rise)>  
+    bit 41 	u_tx_sample_cnt_reg[2]  <clk (rise)>  
+    bit 42 	u_tx_sample_cnt_reg[3]  <clk (rise)>  
+    bit 43 	u_tx_shift_reg_reg[0]  <clk (rise)>  
+    bit 44 	u_tx_shift_reg_reg[1]  <clk (rise)>  
+    bit 45 	u_tx_shift_reg_reg[2]  <clk (rise)>  
+    bit 46 	u_tx_shift_reg_reg[3]  <clk (rise)>  
+    bit 47 	u_tx_shift_reg_reg[4]  <clk (rise)>  
+    bit 48 	u_tx_shift_reg_reg[5]  <clk (rise)>  
+    bit 49 	u_tx_shift_reg_reg[6]  <clk (rise)>  
+    bit 50 	u_tx_shift_reg_reg[7]  <clk (rise)>  
+    bit 51 	u_tx_state_reg[0]  <clk (rise)>  
+    bit 52 	u_tx_state_reg[1]  <clk (rise)>  
+    bit 53 	u_tx_tx_busy_reg  <clk (rise)>  
+    bit 54 	u_tx_tx_reg  <clk (rise)>  
+------------------------
+

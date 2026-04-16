@@ -1,0 +1,71 @@
+VERSION 5.5 ;
+NAMESCASESENSITIVE ON ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN uart_top ;
+
+SCANCHAINS 1 ;
+  - chain1_seg1_clk_test_rising 
+    + PARTITION p_clk_test_rising 
+      MAXBITS 54
+    + START PIN scan_in
+    + FLOATING 
+       u_rx_bit_idx_reg[0] ( IN SI ) ( OUT Q ) 
+       u_rx_bit_idx_reg[1] ( IN SI ) ( OUT Q ) 
+       u_rx_bit_idx_reg[2] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[0] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[1] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[2] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[3] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[4] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[5] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[6] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_data_reg[7] ( IN SI ) ( OUT Q ) 
+       u_rx_rx_sync0_reg ( IN SI ) ( OUT Q ) 
+       u_rx_rx_sync1_reg ( IN SI ) ( OUT QN ) 
+       u_rx_rx_valid_reg ( IN SI ) ( OUT Q ) 
+       u_rx_sample_cnt_reg[0] ( IN SI ) ( OUT QN ) 
+       u_rx_sample_cnt_reg[1] ( IN SI ) ( OUT Q ) 
+       u_rx_sample_cnt_reg[2] ( IN SI ) ( OUT Q ) 
+       u_rx_sample_cnt_reg[3] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[0] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[1] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[2] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[3] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[4] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[5] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[6] ( IN SI ) ( OUT Q ) 
+       u_rx_shift_reg_reg[7] ( IN SI ) ( OUT Q ) 
+       u_rx_state_reg[0] ( IN SI ) ( OUT Q ) 
+       u_rx_state_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[0] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[2] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[3] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[4] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_cnt_reg[5] ( IN SI ) ( OUT Q ) 
+       u_tx_baud_tick_reg ( IN SI ) ( OUT Q ) 
+       u_tx_bit_idx_reg[0] ( IN SI ) ( OUT Q ) 
+       u_tx_bit_idx_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_bit_idx_reg[2] ( IN SI ) ( OUT Q ) 
+       u_tx_sample_cnt_reg[0] ( IN SI ) ( OUT QN ) 
+       u_tx_sample_cnt_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_sample_cnt_reg[2] ( IN SI ) ( OUT Q ) 
+       u_tx_sample_cnt_reg[3] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[0] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[2] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[3] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[4] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[5] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[6] ( IN SI ) ( OUT Q ) 
+       u_tx_shift_reg_reg[7] ( IN SI ) ( OUT Q ) 
+       u_tx_state_reg[0] ( IN SI ) ( OUT Q ) 
+       u_tx_state_reg[1] ( IN SI ) ( OUT Q ) 
+       u_tx_tx_busy_reg ( IN SI ) ( OUT Q ) 
+       u_tx_tx_reg ( IN SI ) ( OUT Q ) 
+    + STOP PIN scan_out
+;
+
+END SCANCHAINS 
+END DESIGN 
