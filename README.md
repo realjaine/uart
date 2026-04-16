@@ -142,6 +142,9 @@ Vectorless analysis at V_DD = 0.67V:
 | **Setup Slack** | **+13,706** | **ps** | ✅ **Sign-off Met** |
 
 ---
+## GUI schematic 
+
+<img width="974" height="734" alt="gui_schematic" src="https://github.com/user-attachments/assets/1e367f75-ece0-4e2a-8410-15112a1a9379" />
 
 ## 🛡️ DFT & ATPG Deep-Dive
 
