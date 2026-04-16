@@ -1,0 +1,65 @@
+Starting Command: write_vectors 
+
+INFO (TDA-005): Command Line Invocation: 
+            write_vectors -language verilog -inexperiment ex1 -testmode FULLSCAN -outputfilename .//results/test_vectors.v -workdir .  [end TDA_005]
+
+INFO (TDA-014): Cadence(R) Modus(TM) DFT Software Solution, Version 20.12-s002_1, built Feb 26 2021 (linux26_64) [end TDA_014]
+
+INFO (TDA-015): Log File: ./testresults/logs/log_write_vectors_FULLSCAN_ex1_041326190556-838235000 [end TDA_015]
+
+INFO (TDA-007): Job Information:
+            Date Started: Monday Apr 13 19:05:56 2026  IST
+            Host machine is cad20, x86_64 running Linux 3.10.0-1160.el7.x86_64.
+            This job is process number 11574.
+[end TDA_007]
+
+INFO (TDA-009): Options/Values information.
+            (options marked with '*' have program generated values,
+             options marked with '+' were specified to default.)
+
+            -WORKDIR /home/iiitdmk/Desktop/uart
+            -TESTMODE FULLSCAN
+
+            -INEXPERIMENT ex1
+            -LOGFILE ./testresults/logs/log_write_vectors_FULLSCAN_ex1_041326190556-838235000
+            -outputfilename .//results/test_vectors.v
+          + -language verilog
+[end TDA_009]
+INFO (TVE-001): Verilog write vectors started.   [end TVE_001] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified SCAN offset for this clock 'pin clk'.  A default clock offset of 16.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin rst_n'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.   [end TVE_004] 
+ERROR (TVE-951): Failed to open the file: ./testresults/verilog/.//results/test_vectors.v.cyclemap.  [end TVE_951] 
+ fopen system error information:  Open Permanent File ./testresults/verilog/.//results/test_vectors.v.cyclemap (File Description = CycleMap): No such file or directory
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            6,559,728  bytes
+
+                      CPU Time =    0:00:00.01
+                  Elapsed Time =    0:00:00.04                    [end TDA_001]
+
+     Date Ended:  Monday Apr 13 19:05:56 2026  IST
+
+INFO (TVE-002): Verilog write vectors has terminated due to Errors.   [end TVE_002] 
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TVE-001): Verilog write vectors started.    
+      1 INFO (TVE-002): Verilog write vectors has terminated due to Errors.    
+      1 INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.    
+      3 INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.    
+
+  ERROR Messages...
+      1 ERROR (TVE-951): Failed to open the file: ./testresults/verilog/.//results/test_vectors.v.cyclemap.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
