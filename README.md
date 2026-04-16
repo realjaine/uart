@@ -6,9 +6,9 @@
 [![Coverage](https://img.shields.io/badge/Fault%20Coverage-99.89%25-success.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-*A complete industrial ASIC DFT flow: From RTL synthesis to 99.89% Test Coverage ATPG*
+*A complete industrial ASIC DFT flow: From RTL synthesis to **Scan Chain Insertion** to 99.89% Test Coverage ATPG*
 
-[Features](#-key-highlights) • [Architecture](#-design-architecture) • [Synthesis Results](#-synthesis-key-metrics-90nm-genus) • [DFT & ATPG](#-dft--atpg-deep-dive) • [Repository](#-repository-structure)
+[Features](#-key-highlights) • [Architecture](#-design-architecture) • [Pre vs Post DFT](#-pre-dft-vs-post-dft-comparison) • [Synthesis Results](#-synthesis-key-metrics-90nm-genus) • [DFT & ATPG](#-dft--atpg-deep-dive) • [Repository](#-repository-structure)
 
 ---
 
@@ -108,11 +108,72 @@ uart_top.v (Top Module)
 
 ---
 
+## 📊 Pre-DFT vs Post-DFT Comparison
+
+This table shows the measurable impact of scan chain insertion on area, power, and timing — extracted directly from Cadence Genus reports.
+
+### 🔹 Area & Cell Count
+
+| Metric | Pre-DFT | Post-DFT | Overhead |
+|:---|:---|:---|:---|
+| **Total Cell Count** | 179 | 209 | **+30 cells (+16.8%)** |
+| **Total Cell Area** | 1743.898 μm² | 2145.811 μm² | **+401.913 μm² (+23.1%)** |
+| **Sequential Area** | 1233.747 μm² (70.7%) | 1419.944 μm² (66.2%) | **+186.197 μm²** |
+| **Combinational Area** | 510.151 μm² (29.3%) | 725.867 μm² (33.8%) | **+215.716 μm²** |
+| **Sequential FF Type** | DFFRHQX1 / DFFRXL / DFFSHQX1 | SDFFRHQX1/4/8, SDFFRXL, SDFFSHQX1/2, SDFFSXL | Scan FFs inserted ✅ |
+| **Scan FFs** | 0 (normal FFs only) | **54 (100% scan-mapped)** | Full scan ✅ |
+
+> **Note:** The area increase is primarily due to scan mux insertion — each normal FF (DFFRHQX1) is replaced by a scan FF (SDFFRHQX1) which includes an extra multiplexer for the scan path.
+
+---
+
+### 🔹 Power Comparison
+
+| Power Component | Pre-DFT (W) | Post-DFT (W) | Change |
+|:---|:---|:---|:---|
+| **Internal Power** | 5.872 × 10⁻⁵ (78.35%) | 6.223 × 10⁻⁵ (75.09%) | **+5.98%** |
+| **Switching Power** | 7.665 × 10⁻⁶ (10.23%) | 8.638 × 10⁻⁶ (10.42%) | **+12.70%** |
+| **Leakage Power** | 8.565 × 10⁻⁶ (11.43%) | 1.200 × 10⁻⁵ (14.48%) | **+40.10%** |
+| **Total Power** | **7.495 × 10⁻⁵ (0.0749 mW)** | **8.287 × 10⁻⁵ (0.0829 mW)** | **+10.57%** |
+
+> **Note:** Leakage power increases the most (+40%) because scan FFs are physically larger cells than standard FFs, contributing more static leakage current.
+
+---
+
+### 🔹 Timing Comparison
+
+| Parameter | Pre-DFT | Post-DFT | Impact |
+|:---|:---|:---|:---|
+| **Clock Period** | 20,000 ps (50 MHz) | 20,000 ps (50 MHz) | No change |
+| **Critical Path** | `u_tx_tx_busy_reg/CK → tx_busy` | `tx_start → u_tx_shift_reg_reg[6]/D` | Path changed |
+| **Data Arrival Time** | 663 ps | 5,593 ps | Path restructured |
+| **Setup Uncertainty** | 500 ps | 500 ps | No change |
+| **Worst Setup Slack** | **+13,837 ps** ✅ | **+13,706 ps** ✅ | **−131 ps (minimal)** |
+| **DFT Rule Violations** | — | **0** | ✅ Clean |
+| **Scannable Registers** | 0% | **100%** | Full scan ✅ |
+
+> **Note:** Timing degradation is only 131 ps — well within margin. The design comfortably meets timing at 50 MHz even after full scan insertion.
+
+---
+
+### 🔹 Summary Snapshot
+
+| Metric | Pre-DFT | Post-DFT | Impact |
+|:---|:---|:---|:---|
+| Cell Count | 179 | 209 | +16.8% |
+| Total Area | 1743.898 μm² | 2145.811 μm² | +23.1% |
+| Total Power | 0.0749 mW | 0.0829 mW | +10.57% |
+| Worst Slack | +13,837 ps | +13,706 ps | −131 ps |
+| Scan FFs | 0 | 54 | ✅ 100% scan-mapped |
+| DFT Violations | — | 0 | ✅ |
+
+---
+
 ## 📊 Synthesis Key Metrics (90nm Genus)
 
 The design was synthesized using the **slow.lib** corner to ensure worst-case reliability.
 
-### 🧩 Area & Gate Utilization
+### 🧩 Area & Gate Utilization (Post-DFT)
 
 | Metric | Value | File Source |
 |:---|:---|:---|
@@ -121,7 +182,7 @@ The design was synthesized using the **slow.lib** corner to ensure worst-case re
 | **Sequential Instances** | 54 (All Scan-Mapped) | `post_dft_rules.rpt` |
 | **Combinational Area** | 725.87 μm² | `post_dft_gates.rpt` |
 
-### ⚡ Power Breakdown (Joules Engine)
+### ⚡ Power Breakdown — Post-DFT (Joules Engine)
 
 Vectorless analysis at V_DD = 0.67V:
 
@@ -132,7 +193,7 @@ Vectorless analysis at V_DD = 0.67V:
 | **Leakage Power** | 1.200 × 10⁻⁵ | 14.5% | Static power dissipation |
 | **Total Power** | **8.286 × 10⁻⁵** | **100%** | **Total consumption (0.082 mW)** |
 
-### ⏱️ Timing Analysis (Sign-off)
+### ⏱️ Timing Analysis — Post-DFT (Sign-off)
 
 | Parameter | Value | Unit | Description |
 |:---|:---|:---|:---|
@@ -142,9 +203,12 @@ Vectorless analysis at V_DD = 0.67V:
 | **Setup Slack** | **+13,706** | **ps** | ✅ **Sign-off Met** |
 
 ---
-## GUI schematic 
+
+## GUI Schematic
 
 <img width="974" height="734" alt="gui_schematic" src="https://github.com/user-attachments/assets/1e367f75-ece0-4e2a-8410-15112a1a9379" />
+
+---
 
 ## 🛡️ DFT & ATPG Deep-Dive
 
@@ -200,7 +264,7 @@ A single, optimized scan chain was inserted to minimize routing overhead while m
 
 ### Critical Path Analysis
 
-**Pre-DFT Synthesis (Genus):**
+**Post-DFT (Worst Setup Path):**
 - Launch: `tx_start`
 - Capture: `u_tx_shift_reg_reg[6]/D`
 - Data Arrival: 5,593 ps
@@ -223,12 +287,15 @@ uart-dft-core/
 │   └── rtl_to_fv_map.do        # LEC Verification Script
 │
 ├── reports/                    # Industrial Log Files
-│   ├── dft_setup.rpt           # Scan Chain Architecture
-│   ├── post_dft_area.rpt       # Area & Cell Count
-│   ├── post_dft_gates.rpt      # Gate-level Instance Report
-│   ├── post_dft_power.rpt      # Joules Power Analysis
+│   ├── pre_dft_area.rpt        # Pre-DFT Area & Cell Count
+│   ├── pre_dft_gates.rpt       # Pre-DFT Gate-level Instance Report
+│   ├── pre_dft_power.rpt       # Pre-DFT Power Analysis
+│   ├── pre_dft_timing.rpt      # Pre-DFT Slack & Path Analysis
+│   ├── post_dft_area.rpt       # Post-DFT Area & Cell Count
+│   ├── post_dft_gates.rpt      # Post-DFT Gate-level Instance Report
+│   ├── post_dft_power.rpt      # Post-DFT Joules Power Analysis
 │   ├── post_dft_rules.rpt      # DFT Rule Check (0 violations)
-│   ├── post_dft_timing.rpt     # Slack & Path Analysis
+│   ├── post_dft_timing.rpt     # Post-DFT Slack & Path Analysis
 │   └── test_coverage.rpt       # 99.89% Fault Summary
 │
 ├── fv/                         # Formal Verification
@@ -313,8 +380,8 @@ Contributions are welcome! Here are some areas for improvement:
 
 ## 📧 Contact
 
-**Tanmay Jain**
-B.Tech, Electronics and Communication Engineering
+**Tanmay Jain**  
+B.Tech, Electronics and Communication Engineering  
 Indian Institute of Information Technology, Design and Manufacturing (IIITDM) Kurnool
 
 - 📧 Email: 123ec0025@iiitk.ac.in
